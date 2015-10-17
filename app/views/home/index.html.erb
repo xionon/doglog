@@ -4,7 +4,7 @@
 <% @featured_posts.each do |post| %>
 
   <p>
-    <%= post.dog.name %>: 
+    <%= link_to post.dog.name, post.dog %>: 
     <%= post.body %>
   </p>
 
