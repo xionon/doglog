@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+var Doglog = {}
+
+Doglog.init = function() {
+  $("#post_body").on('keydown', function(e) {
+    if(e.which === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      $(this).closest('form').submit();
+    }
+  });
+};
+
+$(function() {
+  Doglog.init();
+});
