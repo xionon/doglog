@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @featured_posts = Post.limit(100).order(created_at: :desc)
+    @featured_posts = Post.featured.sample(10)
   end
 end

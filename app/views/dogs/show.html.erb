@@ -2,7 +2,7 @@
 <% if user_signed_in? && current_user == @dog.user %>
   <%= form_for [@dog, @dog.posts.build] do |form| %>
     <div>
-      <%= form.text_area :body, autofocus: true %>
+      <%= form.text_area :body, autofocus: true, class: "post_body" %>
     </div>
     <div>
       <%= form.submit %>
