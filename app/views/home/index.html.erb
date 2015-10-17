@@ -1,3 +1,11 @@
 <h1>Welcome to Doglog</h1>
 <p>The log for your dog!</p>
 
+<% @featured_posts.each do |post| %>
+
+  <p>
+    <%= post.body %>
+  </p>
+
+<% end %>
+
