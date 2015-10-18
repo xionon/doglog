@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'about' => 'home#about'
   resources :dogs, only: %i[show] do
     resources :posts, only: %i[create]
   end

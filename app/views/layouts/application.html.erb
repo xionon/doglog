@@ -12,7 +12,9 @@
   <ul>
     <li><%= link_to 'home', root_path %></li>
     <li><%= link_to 'timeline', root_path %></li>
+    <li><%= link_to 'about', about_path %></li>
   </ul>
+
   <% if user_signed_in? %>
     <h2>My dogs</h2>
     <ul>
