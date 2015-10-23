@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @featured_posts = Post.featured.sample(10)
+    @featured_posts = Post.featured
   end
 
   def about

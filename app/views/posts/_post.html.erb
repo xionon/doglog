@@ -1,6 +1,10 @@
 <li>
   <div>
-    <%= post.body %>
+    <%= link_to post.dog.name, post.dog %>
+  </div>
+
+  <div>
+    <%= markdown post.body %>
   </div>
 
   <p>

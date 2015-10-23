@@ -1,12 +1,5 @@
 <h1>Welcome to Doglog</h1>
+
 <p>The log for your dog!</p>
 
-<% @featured_posts.each do |post| %>
-
-  <p>
-    <%= link_to post.dog.name, post.dog %>: 
-    <%= post.body %>
-  </p>
-
-<% end %>
-
+<%= render @featured_posts %>
