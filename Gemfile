@@ -32,6 +32,10 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'capybara'
+  gem 'poltergeist', '~> 1.7.0'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 gem 'devise'
