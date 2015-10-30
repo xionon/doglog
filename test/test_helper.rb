@@ -22,6 +22,8 @@ class ActiveSupport::TestCase
 end
 
 
-  # Add more helper methods to be used by all tests here...
-  include Devise::TestHelpers
+require_relative Rails.root + 'test/support/varnish_test_helper'
+class ActiveSupport::TestCase
+  include VarnishTestHelper
 end
+VarnishTestHelper.setup!
