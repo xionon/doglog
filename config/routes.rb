@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get 'home/index'
-  get 'about' => 'home#about'
+  get 'static/about' => 'home#about', as: :about
+
   resources :dogs, only: %i[show] do
-    resources :posts, only: %i[create]
+    resources :posts, only: %i[index create]
   end
 
   devise_for :users
