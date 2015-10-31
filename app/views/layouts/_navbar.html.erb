@@ -23,10 +23,16 @@
             <% end %>
             <li class="divider"></li>
 
-            <li class="has-form">
-              <%= button_to 'Log out', destroy_user_session_path, method: 'delete', class: "button alert" %>
+            <li class="alert">
+              <%= link_to 'My Account', edit_user_registration_path %>
             </li>
           </ul>
+        </li>
+
+        <li class="has-form">
+          <div class="row">
+            <%= button_to 'Log out', destroy_user_session_path, method: 'delete', class: "button alert" %>
+          </div>
         </li>
 
       <% else %>
