@@ -1,0 +1,42 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to 'Doglog', root_path %></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><%= link_to 'Dogs', root_path %></li>
+      <li><%= link_to 'About', about_path %></li>
+
+
+      <% if user_signed_in? %>
+
+        <li class="has-dropdown has-form">
+          <a href="#">Welcome back, <%= current_user.email %>.</a>
+          <ul class="dropdown">
+            <% current_user.dogs.each do |dog| %>
+              <li><%= link_to dog.name, dog_path(dog) %></li>
+            <% end %>
+            <li class="divider"></li>
+
+            <li class="has-form">
+              <%= button_to 'Log out', destroy_user_session_path, method: 'delete', class: "button alert" %>
+            </li>
+          </ul>
+        </li>
+
+      <% else %>
+        <li>
+          <%= link_to 'Login', new_user_session_path %>
+        </li>
+        <li class="has-form">
+          <%= link_to 'Sign up', new_user_registration_path, class: "button" %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</nav>

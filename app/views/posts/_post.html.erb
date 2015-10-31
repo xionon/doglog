@@ -1,13 +1,13 @@
-<li>
-  <div>
+<article class="panel">
+  <div class="dog-name">
     <%= link_to post.dog.name, post.dog %>
   </div>
 
-  <div>
+  <div class="post-body">
     <%= markdown post.body %>
   </div>
 
-  <p>
+  <p class="posted-at">
     Posted at <%= l post.created_at, format: :short %>
   </p>
-</li>
+</article>

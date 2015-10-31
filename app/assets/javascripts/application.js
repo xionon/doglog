@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require_tree .
 
 var Doglog = {}
@@ -28,3 +29,5 @@ Doglog.init = function() {
 $(function() {
   Doglog.init();
 });
+
+$(function(){ $(document).foundation(); });

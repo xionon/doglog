@@ -3,35 +3,21 @@
 <head>
   <title>Doglog</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag "modernizr" %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render :partial => 'layouts/navbar' %>
 
-  <h2>Doglog</h2>
-  <ul>
-    <li><%= link_to 'home', root_path %></li>
-    <li><%= link_to 'timeline', root_path %></li>
-    <li><%= link_to 'about', about_path %></li>
-  </ul>
+  <div class="row">
+    <div class="large-12 columns">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
-  <% if user_signed_in? %>
-    <h2>My dogs</h2>
-    <ul>
-      <% current_user.dogs.each do |dog| %>
-        <li><%= link_to dog.name, dog_path(dog) %></li>
-      <% end %>
-    </ul>
-
-    Welcome back, <%= current_user.email %>. <%= button_to 'Log out', destroy_user_session_path, method: 'delete' %>
-  <% else %>
-    <%= link_to 'Login', new_user_session_path %> or <%= link_to 'Sign up', new_user_registration_path %>
-  <% end %>
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-<%= yield %>
+      <%= yield %>
+    </div>
+  </div>
 
 </body>
 </html>
