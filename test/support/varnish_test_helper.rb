@@ -34,7 +34,7 @@ module VarnishTestHelper
     $integration_rails = start_rails
 
     begin
-      Timeout.timeout(3) do
+      Timeout.timeout(10) do
         print "Waiting for varnish"
         loop do
           print "."

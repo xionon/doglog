@@ -17,4 +17,9 @@ class CachingAboutPageTest < ActionDispatch::IntegrationTest
     visit varnish_uri(about_path)
     assert_match "private", page.response_headers['Cache-Control']
   end
+
+  test "removes set-cookie header if cache-control is public" do
+    visit varnish_uri(about_path)
+    assert_nil page.response_headers["Set-Cookie"]
+  end
 end
