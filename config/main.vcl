@@ -11,9 +11,7 @@ sub vcl_recv {
 }
 
 sub vcl_backend_response {
-  if (beresp.http.Cache-Control ~ "public") {
-    unset beresp.http.Set-Cookie;
-  }
+  set beresp.do_esi = true;
 }
 
 sub vcl_deliver {
