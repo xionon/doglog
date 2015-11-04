@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
+  before_filter :defer_session, only: %i[show]
+
   def show
     @posts = current_dog.posts
+    fresh_when @posts,
+      public: true,
+      must_revalidate: true
   end
 
   def create

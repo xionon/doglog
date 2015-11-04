@@ -1,6 +1,18 @@
 class HomeController < ApplicationController
+  layout "marketing"
+  before_filter :defer_session, only: %i[index about]
+
   def index
     @featured_posts = Post.featured
+
+    if user_signed_in?
+      redirect_to timeline_path
+    else
+      fresh_when @featured_posts,
+        public: true,
+        must_revalidate: true,
+        template: 'home/index'
+    end
   end
 
   def about

@@ -1,0 +1,8 @@
+<% @dogs.each do |dog| %>
+  <article>
+    <%= link_to dog do %>
+      <h3><%= dog.name %></h3>
+    <% end %>
+  </article>
+<% end %>
+

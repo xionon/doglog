@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'static/about' => 'home#about', as: :about
 
-  resources :dogs, only: %i[show] do
+  resources :dogs, only: %i[index show create] do
     resources :posts, only: %i[index create]
   end
+
+  resource :timeline
 
   devise_for :users
 
