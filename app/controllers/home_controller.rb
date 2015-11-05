@@ -21,6 +21,8 @@ class HomeController < ApplicationController
       session[:garbage_to_test_varnish_config] = "true"
     end
 
-    expires_in 60.minutes, :public => true
+    expires_in 60.minutes,
+      public: true,
+      must_revalidate: true
   end
 end
