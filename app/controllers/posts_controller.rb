@@ -2,8 +2,9 @@ class PostsController < ApplicationController
   before_filter :defer_session, only: %i[show]
 
   def show
-    @posts = current_dog.posts
-    fresh_when @posts,
+    @post = current_dog.posts.find(params[:id])
+
+    fresh_when @post,
       public: true,
       must_revalidate: true
   end

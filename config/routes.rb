@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'static/about' => 'home#about', as: :about
 
   resources :dogs, only: %i[index show create] do
-    resources :posts, only: %i[index create]
+    resources :posts, only: %i[index show create]
   end
 
   resource :timeline

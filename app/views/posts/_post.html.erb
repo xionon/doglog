@@ -8,6 +8,8 @@
   </div>
 
   <p class="posted-at">
-    Posted at <%= l post.created_at, format: :short %>
+    <%= link_to [post.dog, post] do %>
+      Posted at <%= l(post.created_at, format: :short) %>
+    <% end %>
   </p>
 </article>
