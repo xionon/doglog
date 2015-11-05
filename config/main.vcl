@@ -1,7 +1,15 @@
 vcl 4.0;
 
 sub vcl_recv {
-  if((req.method == "GET" || req.method == "HEAD") && req.url ~ "^/static.*$") {
+  if (req.method == "PURGE") {
+    return (purge);
+  }
+
+  if((req.method == "GET" || req.method == "HEAD") && (req.url ~ "^/static.*$" || req.esi_level > 0)) {
+
+    if(req.esi_level > 0) {
+      set req.http.X-ESI = "true";
+    }
     set req.http.Cookie = regsuball(req.http.Cookie, "(^|;\s*)_[^;=]+=[^;]*", "");
   }
 
@@ -11,7 +19,10 @@ sub vcl_recv {
 }
 
 sub vcl_backend_response {
-  set beresp.do_esi = true;
+  if( beresp.http.X-ESI ) {
+    set beresp.do_esi = true;
+    unset beresp.http.X-ESI;
+  }
 }
 
 sub vcl_deliver {

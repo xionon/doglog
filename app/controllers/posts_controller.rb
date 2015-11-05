@@ -1,5 +1,13 @@
 class PostsController < ApplicationController
-  before_filter :defer_session, only: %i[show]
+  before_filter :defer_session, only: %i[index show]
+
+  def index
+    @posts = current_dog.posts.most_recent_first
+
+    if stale?(@posts, public: true, must_revalidate: true)
+      render :layout => request.headers['X-ESI'].blank?
+    end
+  end
 
   def show
     @post = current_dog.posts.find(params[:id])
@@ -12,6 +20,8 @@ class PostsController < ApplicationController
   def create
     dog = current_user.dogs.find(params[:dog_id])
     dog.posts.create(post_params)
+
+    purge(dog_posts_path(dog))
 
     redirect_to dog_path(dog)
   end
