@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   def index
     @posts = current_dog.posts.most_recent_first
 
-    if stale?(@posts, public: true, must_revalidate: true)
+    expires_in 0.seconds, must_revalidate: true, "s-maxage": 10.minutes
+    if stale?(@posts, public: true)
       render :layout => request.headers['X-ESI'].blank?
     end
   end
@@ -12,9 +13,8 @@ class PostsController < ApplicationController
   def show
     @post = current_dog.posts.find(params[:id])
 
-    fresh_when @post,
-      public: true,
-      must_revalidate: true
+    expires_in 0.seconds, must_revalidate: true, "s-maxage": 10.minutes
+    fresh_when @post, public: true
   end
 
   def create

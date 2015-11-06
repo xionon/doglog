@@ -4,9 +4,8 @@ class DogsController < ApplicationController
   def index
     @dogs = Dog.includes(:posts).all
 
-    fresh_when @dogs,
-      public: true,
-      must_revalidate: true
+    expires_in 0.seconds, must_revalidate: true, "s-maxage": 10.minutes
+    fresh_when @dogs, public: true
   end
 
   def show
@@ -14,8 +13,7 @@ class DogsController < ApplicationController
 
     response.headers['X-ESI'] = 'true'
 
-    fresh_when @dog,
-      public: true,
-      must_revalidate: true
+    expires_in 0.seconds, must_revalidate: true, "s-maxage": 10.minutes
+    fresh_when @dog, public: true
   end
 end
